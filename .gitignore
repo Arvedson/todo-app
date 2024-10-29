@@ -16,7 +16,7 @@
 # next.js
 /.next/
 /out/
-echo "todo-app/"
+
 # production
 /build
 
