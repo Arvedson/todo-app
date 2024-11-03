@@ -35,3 +35,5 @@ const authOptions: NextAuthOptions = {
 // Exporta los métodos HTTP individualmente
 export const GET = NextAuth(authOptions);
 export const POST = NextAuth(authOptions);
+
+export { authOptions }; // Exportar authOptions explícitamente

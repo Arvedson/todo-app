@@ -1,17 +1,18 @@
+
+
 import NextAuth from "next-auth";
 
-
-// Extend the default session to include the user ID
 declare module "next-auth" {
   interface Session {
     user: {
       id: string;
-      email: string;
-      name?: string | null;
-      image?: string | null;
+      name?: string;
+      email?: string;
+      image?: string;
     };
   }
 }
+
 
 // Extend the JWT to include the user ID
 declare module "next-auth/jwt" {
@@ -19,3 +20,5 @@ declare module "next-auth/jwt" {
     id: string;
   }
 }
+
+
