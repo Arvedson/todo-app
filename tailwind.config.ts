@@ -9,8 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: "var(--color-bg)", // Asegúrate de que esta variable esté definida en tu CSS
+        text: "var(--color-text)", // Variable para el color de texto
+        primary: "var(--color-primary)", // Variable para el color primario
+        secondary: "var(--color-secondary)", // Variable para el color secundario
+        accent: "var(--color-accent)", // Variable para el color de acento
+        border: "var(--color-border)", // Variable para el color de los bordes
       },
     },
   },
