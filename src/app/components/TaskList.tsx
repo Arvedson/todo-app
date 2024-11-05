@@ -32,9 +32,7 @@ const TaskList: React.FC = () => {
     fetchTasks();
   }, []);
 
-  const addTask = (newTask: Task) => {
-    setTasks(prevTasks => [newTask, ...prevTasks]);
-  };
+
 
   const handleEditTask = async (id: number, updatedTitle: string, updatedCompleted: boolean) => {
     try {
@@ -73,7 +71,7 @@ const TaskList: React.FC = () => {
       <h2 className="self-center">Mis tareas</h2>
      
       {tasks.length === 0 ? (
-        <p className="text-center text-gray-500 dark:text-gray-400">No hay tareas disponibles.</p>
+        <p className="text-center">No hay tareas disponibles.</p>
       ) : (
         <div className="space-y-4 ">
           {tasks.map(task => (

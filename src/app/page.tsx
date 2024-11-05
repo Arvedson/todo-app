@@ -18,7 +18,7 @@ const HomePage: React.FC = () => {
 <div className="flex items-center justify-center min-h-screen">
   <main className="flex flex-col bg-[rgba(var(--color-bg),0.7)] backdrop-blur-md p-2 sm:p-4 md:p-6 rounded-lg">
     <div className="flex flex-col text-center">
-      <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-750 mb-6">
+      <h1 className="text-4xl font-bold  dark:text-gray-750 mb-6 m-6">
         Bienvenido a la App de Tareas
       </h1>
       {!session ? (
