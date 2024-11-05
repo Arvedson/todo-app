@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import {  signOut } from 'next-auth/react';
-
+import { signOut } from 'next-auth/react';
 
 interface Task {
   id: number;
   title: string;
   completed: boolean;
 }
-
 
 const TaskList: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -23,16 +21,15 @@ const TaskList: React.FC = () => {
         }
         const data: Task[] = await response.json();
         setTasks(data);
-      } catch (error) {
-        setError('Error al cargar las tareas');
+      } catch (err) {
+        const error = err instanceof Error ? err.message : 'Un error desconocido ocurrió';
+        setError(error);
       } finally {
         setLoading(false);
       }
     };
     fetchTasks();
   }, []);
-
-
 
   const handleEditTask = async (id: number, updatedTitle: string, updatedCompleted: boolean) => {
     try {
@@ -46,8 +43,9 @@ const TaskList: React.FC = () => {
       }
       const updatedTask: Task = await response.json();
       setTasks(tasks.map(task => (task.id === id ? updatedTask : task)));
-    } catch (error) {
-      setError('No se pudo actualizar la tarea. Inténtalo de nuevo.');
+    } catch (err) {
+      const error = err instanceof Error ? err.message : 'Un error desconocido ocurrió';
+      setError(error);
     }
   };
 
@@ -58,8 +56,9 @@ const TaskList: React.FC = () => {
         throw new Error('Error al eliminar la tarea');
       }
       setTasks(tasks.filter(task => task.id !== id));
-    } catch (error) {
-      setError('No se pudo eliminar la tarea. Inténtalo de nuevo.');
+    } catch (err) {
+      const error = err instanceof Error ? err.message : 'Un error desconocido ocurrió';
+      setError(error);
     }
   };
 
@@ -69,15 +68,14 @@ const TaskList: React.FC = () => {
   return (
     <div className="flex flex-col p-1 self-center">
       <h2 className="self-center">Mis tareas</h2>
-     
       {tasks.length === 0 ? (
         <p className="text-center">No hay tareas disponibles.</p>
       ) : (
-        <div className="space-y-4 ">
+        <div className="space-y-4">
           {tasks.map(task => (
             <div
               key={task.id}
-              className="p-4 border border-gray-300 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-700 flex justify-between items-center gap-6 "
+              className="p-4 border border-gray-300 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-700 flex justify-between items-center gap-6"
             >
               <div>
                 <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">{task.title}</h3>
@@ -103,12 +101,12 @@ const TaskList: React.FC = () => {
           ))}
         </div>
       )}
-              <button
-          onClick={() => signOut()}
-          className="mb-4 bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition-all duration-200 my-6"
-        >
-          Cerrar sesión
-        </button>
+      <button
+        onClick={() => signOut()}
+        className="mb-4 bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition-all duration-200 my-6"
+      >
+        Cerrar sesión
+      </button>
     </div>
   );
 };
