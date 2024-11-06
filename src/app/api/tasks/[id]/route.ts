@@ -1,8 +1,5 @@
 import { NextResponse } from 'next/server';
 import prisma from '../../../../../lib/prisma';
-
-
-
 export async function DELETE(_: Request, { params }: { params: { id: string } }) {
   const taskId = Number(params.id);
   if (isNaN(taskId)) return NextResponse.json({ error: "Invalid task ID" }, { status: 400 });
@@ -19,8 +16,6 @@ export async function DELETE(_: Request, { params }: { params: { id: string } })
   } 
     return NextResponse.json({ error: 'Error deleting task' }, { status: 500 });
   }
-
-
 export async function PUT(request: Request, context: { params: { id: string } }) {
   try {
     const taskId = Number(context.params.id);

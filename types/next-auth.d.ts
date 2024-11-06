@@ -1,5 +1,4 @@
-
-
+import type { Session } from "next-auth";
 import NextAuth from "next-auth";
 
 declare module "next-auth" {
@@ -12,13 +11,3 @@ declare module "next-auth" {
     };
   }
 }
-
-
-// Extend the JWT to include the user ID
-declare module "next-auth/jwt" {
-  interface JWT {
-    id: string;
-  }
-}
-
-
